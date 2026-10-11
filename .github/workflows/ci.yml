@@ -34,6 +34,6 @@ jobs:
           for i in $(seq 1 40); do curl -fsS http://localhost:3100 >/dev/null && break; sleep 2; done
           npm run test:integration
           npm run test:browser
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with: { name: verification-artifacts, path: output/ }
