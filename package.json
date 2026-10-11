@@ -24,7 +24,7 @@
   "dependencies": {
     "@axe-core/playwright": "4.10.2",
     "axe-core": "4.10.3",
-    "bullmq": "5.81.5",
+    "bullmq": "6.3.11",
     "ipaddr.js": "2.2.0",
     "next": "16.4.0",
     "pg": "8.16.3",
