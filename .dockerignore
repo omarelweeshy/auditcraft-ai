@@ -1,0 +1,8 @@
+node_modules
+**/.next
+.env
+.git
+data
+tmp
+output
+test-results

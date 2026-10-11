@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-10-09T20:37:44.039Z",
+  "passed": [
+    "Unauthenticated HTML, PDF and screenshot access denied",
+    "Seeded failure review and timeline render correctly",
+    "Mobile report iframe content has no horizontal overflow",
+    "Manual evidence-linked finding can be added in the mobile UI"
+  ]
+}

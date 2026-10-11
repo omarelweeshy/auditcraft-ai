@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-10-09T20:27:17.023Z",
+  "passed": [
+    "public dashboard denied",
+    "unauthorized job creation denied",
+    "CSRF token and origin enforced",
+    "worker uses separate credential",
+    "API cannot enable private-site scanning",
+    "concurrent idempotent submissions create one audit",
+    "real worker captures fixture and persists evidence",
+    "all generated findings reference valid evidence and await approval",
+    "authenticated screenshot retrieval",
+    "unapproved findings cannot enter reports",
+    "editing preserves previous revision",
+    "concurrent edit conflict detected",
+    "report includes only selected approved findings",
+    "outreach references approved findings only",
+    "database blocks finalized-report and evidence mutation",
+    "later review changes cannot mutate saved report",
+    "worker creates downloadable PDF from approved snapshot",
+    "rerun creates a new audit version",
+    "cancelled job stops and retains records",
+    "controlled failure retries and preserves audit identity",
+    "provider failure retains evidence and routes to manual review",
+    "orphaned SQL outbox row is recovered by reconciliation",
+    "secrets absent from representative APIs and report"
+  ],
+  "auditId": "33976aad-fc68-42ee-9f78-aff23512f780",
+  "reportId": "cbf984b4-a369-415b-a95e-a7238f4b0732",
+  "limitations": [
+    "Actual SIGKILL/BullMQ stale-lock recovery is verified separately.",
+    "No external live AI or website integrations."
+  ]
+}

@@ -1,0 +1,39 @@
+name: AuditCraft verification
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          {
+            POSTGRES_USER: auditcraft,
+            POSTGRES_PASSWORD: local-only,
+            POSTGRES_DB: auditcraft,
+          }
+        ports: ["55432:5432"]
+        options: --health-cmd "pg_isready -U auditcraft" --health-interval 5s --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports: ["56379:6379"]
+        options: --health-cmd "redis-cli ping" --health-interval 5s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: npm }
+      - run: npm ci
+      - run: npm run setup
+      - run: npx playwright install --with-deps chromium
+      - run: npm run migrate
+      - run: npm test && npm run typecheck && npm run lint && npm run build
+      - run: npm ci --prefix demo && npm run build:demo && npm run test:demo
+      - run: |
+          npm run start -w @auditcraft/web > /tmp/auditcraft-web.log 2>&1 &
+          npm run worker > /tmp/auditcraft-worker.log 2>&1 &
+          for i in $(seq 1 40); do curl -fsS http://localhost:3100 >/dev/null && break; sleep 2; done
+          npm run test:integration
+          npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: verification-artifacts, path: output/ }

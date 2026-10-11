@@ -1,0 +1,8 @@
+{
+  "timestamp": "2026-10-09T20:34:43.732Z",
+  "auditId": "9e905fee-0c33-44ae-addc-1bf6ef441c18",
+  "attempts": 2,
+  "pages": 4,
+  "evidence": 126,
+  "result": "PASS: killed worker during active capture; BullMQ recovered expired lease; completed same audit without duplicate evidence IDs"
+}

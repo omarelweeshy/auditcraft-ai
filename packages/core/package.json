@@ -1,0 +1,5 @@
+{
+  "name": "@auditcraft/core",
+  "private": true,
+  "type": "module"
+}

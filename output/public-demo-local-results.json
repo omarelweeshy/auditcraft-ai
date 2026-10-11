@@ -1,0 +1,12 @@
+{
+  "url": "http://127.0.0.1:3201",
+  "checks": [
+    "edit, approve, and export only approved findings",
+    "reject, evidence links, and passed/issue filters",
+    "original captures and real PDF download",
+    "reset, responsive layout and WCAG A/AA checks across four tabs at three widths",
+    "private paths absent and no browser errors"
+  ],
+  "passed": true,
+  "timestamp": "2026-10-11T21:18:50.659Z"
+}

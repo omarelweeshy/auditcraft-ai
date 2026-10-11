@@ -1,0 +1,72 @@
+name: auditcraft
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: auditcraft
+      POSTGRES_PASSWORD: local-only
+      POSTGRES_DB: auditcraft
+    ports: ["127.0.0.1:55432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U auditcraft"]
+      interval: 5s
+      retries: 20
+  redis:
+    image: redis:7-alpine
+    command:
+      [
+        "redis-server",
+        "--appendonly",
+        "yes",
+        "--maxmemory-policy",
+        "noeviction",
+      ]
+    ports: ["127.0.0.1:56379:6379"]
+    volumes: ["redisdata:/data"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 20
+  migrate:
+    build: .
+    image: auditcraft-local
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://auditcraft:local-only@postgres:5432/auditcraft
+    command: ["npm", "run", "migrate"]
+    depends_on:
+      postgres: { condition: service_healthy }
+  web:
+    image: auditcraft-local
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://auditcraft:local-only@postgres:5432/auditcraft
+      REDIS_URL: redis://redis:6379
+      ARTIFACT_DIR: /app/data/artifacts
+    ports: ["127.0.0.1:3100:3100"]
+    volumes: ["./data/artifacts:/app/data/artifacts"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      redis: { condition: service_healthy }
+    restart: unless-stopped
+  worker:
+    image: auditcraft-local
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://auditcraft:local-only@postgres:5432/auditcraft
+      REDIS_URL: redis://redis:6379
+      ARTIFACT_DIR: /app/data/artifacts
+    command: ["npm", "run", "worker"]
+    init: true
+    shm_size: 1gb
+    volumes: ["./data/artifacts:/app/data/artifacts"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      redis: { condition: service_healthy }
+    restart: unless-stopped
+volumes:
+  pgdata:
+  redisdata:

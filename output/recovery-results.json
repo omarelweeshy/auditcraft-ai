@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-10-09T20:33:38.562Z",
+  "passed": [
+    "Three-attempt terminal failure preserves prospect and audit records with a safe error",
+    "Cancellation during active desktop capture closes processing before evidence commit"
+  ],
+  "failedAuditId": "987e55e8-a623-40a1-848a-1bb3e8d08ca3",
+  "cancelledAuditId": "bb177365-42cf-4fec-b412-fea6388e6ce9"
+}

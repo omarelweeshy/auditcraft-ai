@@ -1,0 +1,50 @@
+{
+  "name": "auditcraft-ai",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @auditcraft/web",
+    "worker": "tsx apps/worker/src/index.ts",
+    "build": "npm run build -w @auditcraft/web",
+    "build:demo": "npm --prefix demo run build",
+    "test:demo": "tsx scripts/demo-check.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint apps packages scripts tests demo/app demo/next.config.ts",
+    "test": "tsx --test tests/*.test.ts",
+    "test:integration": "tsx scripts/integration.ts",
+    "test:browser": "tsx scripts/browser-check.ts",
+    "migrate": "tsx packages/database/src/migrate.ts",
+    "seed": "tsx scripts/seed.ts",
+    "setup": "node scripts/setup.mjs"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "4.10.2",
+    "axe-core": "4.10.3",
+    "bullmq": "5.81.5",
+    "ipaddr.js": "2.2.0",
+    "next": "16.4.0",
+    "pg": "8.16.3",
+    "playwright": "1.56.1",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "zod": "4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.0",
+    "@types/pg": "8.15.5",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "eslint": "9.39.1",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.46.3"
+  },
+  "overrides": {
+    "playwright-core": "1.56.1"
+  },
+  "type": "module"
+}

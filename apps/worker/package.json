@@ -1,0 +1,5 @@
+{
+  "name": "@auditcraft/worker",
+  "private": true,
+  "type": "module"
+}
