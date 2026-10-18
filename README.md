@@ -1,5 +1,7 @@
 # AuditCraft AI
 
+> New to this repository? Start with the [project and agent handover](PROJECT-HANDOVER.md).
+
 ## Public portfolio demo
 
 [Open the public demo](https://auditcraft-ai.vercel.app). Source and deployment instructions are in [`demo/`](demo/README.md). It uses recorded fictional evidence and supports review edits and JSON export without signup. The sample PDF is a previously finalized report. This demo does not run fresh audits or call live AI providers. For Vercel, set the repository Root Directory to `demo`; no backend services or environment variables are needed.

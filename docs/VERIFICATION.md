@@ -10,6 +10,8 @@ Executed locally: static production build, strict demo TypeScript check, reposit
 
 `npm run test:demo` tests the local static output; `DEMO_URL=https://auditcraft-ai.vercel.app npm run test:demo` tests the anonymous public deployment (PowerShell: set `$env:DEMO_URL` first). Records are saved in `output/public-demo-local-results.json` and `output/public-demo-results.json`; screenshots are in `output/screenshots/public-demo-*.png`. GitHub CI was extended to build and check the demo, but has not been executed remotely in this session. No GitHub repository was created or pushed as part of deployment.
 
+The preceding statements describe the 12 October Vercel demo deployment at that point in time. On 19 October 2026, initial commit `3f7822205eb121df2d66724fcbf331b0196d9fed` was pushed to the public GitHub repository. GitHub's `AuditCraft verification` workflow and the dependency and Docker update workflows for that commit subsequently completed successfully. Later commits require fresh checks.
+
 The original full-stack verification below is dated 9 October and was not repeated in full for this static demo deployment.
 
 Run date: 9 October 2026, Africa/Cairo. Local Windows development plus the production-built Linux Docker stack. All results below are from executed commands, not inferred from compilation.
@@ -59,8 +61,8 @@ Only a **deterministic template provider** was exercised. No OpenAI, Ollama or o
 - Lighthouse, Speed Index, standardized Lighthouse TBT, real-user field metrics, meaningful external transfer-size budgets, rendering-blocker analysis, oversized-image analysis, full focus/keyboard/overlap/journey checks, duplicate metadata across real pages and real cookie-policy assessment.
 - External AI providers, semantic truth verification of arbitrary human prose, automatic prices, outbound email and third-party integrations.
 - Firefox, Safari, real mobile hardware, manual assistive-technology review and tagged accessible PDF output.
-- Multi-user authorization, public deployment, distributed rate limiting, security review of hostile browser execution, backups/restoration, retention, load/performance testing and production operations.
+- Multi-user authorization or deployment of the full-stack local service as a public service, distributed rate limiting, security review of hostile browser execution, backups/restoration, retention, load/performance testing and production operations. The separately hosted static portfolio demo is described in the dated section above.
 - GitHub Actions configuration exists but was not executed on GitHub; no remote repository or deployment was created.
 
-The tested result is a functional local fixture MVP. It is not production-ready and must not be presented as a validated live prospect-audit service. Source changes are intentionally left uncommitted for review.
+The tested result is a functional local fixture MVP. It is not production-ready and must not be presented as a validated live prospect-audit service. The original 9 October verification snapshot preceded GitHub publication. The initial public repository commit is documented above.
 
